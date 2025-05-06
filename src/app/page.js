@@ -28,11 +28,12 @@ export default async function Home () {
                     </p>
                     <HomePageButton User={JSON.parse(JSON.stringify(User))} profileInfo={profileInfo}/>
                   </div>
-                  <div>
+                  <div className="relative object-cover object-top  md:block lg:w-7/12
+                  ">
                       <img
                       src="JobPortal_Logo.png"
                       alt="Job Portal"
-                      className="relative ml-auto w-[400px] h-[400px] md:w-[600px] md:h-[600px] mr-4 select-none"
+                      className="relative ml-auto"
                       />
                   </div>
               </div>
