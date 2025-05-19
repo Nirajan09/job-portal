@@ -71,19 +71,19 @@ export const candidateOnBoardForm = [
   {
     label: "Skills",
     name: "skills",
-    placeholder: "Enter your skills",
+    placeholder: "Enter your Skills [Separated By Space]",
     componentType: "input",
   },
   {
     label: "Previous Companies",
     name: "previousCompanies",
-    placeholder: "Enter your Previous Companies",
+    placeholder: "Enter your Previous Companies [Separated By Comma]",
     componentType: "input",
   },
   {
     label: "Total Experience",
     name: "totalExperience",
-    placeholder: "Enter your total experience",
+    placeholder: "Enter your Total Experience in Years",
     componentType: "input",
   },
   {
@@ -158,19 +158,19 @@ export const accountOnBoardForm = [
   {
     label: "Skills",
     name: "skills",
-    placeholder: "Enter your skills",
+    placeholder: "Enter your Skills [Separated By Space]",
     componentType: "input",
   },
   {
     label: "Previous Companies",
     name: "previousCompanies",
-    placeholder: "Enter your Previous Companies",
+    placeholder: "Enter your Previous Companies [Separated By Comma]",
     componentType: "input",
   },
   {
     label: "Total Experience",
     name: "totalExperience",
-    placeholder: "Enter your total experience",
+    placeholder: "Enter your Total Experience in Years",
     componentType: "input",
   },
   {
@@ -243,44 +243,44 @@ export const postNewJobFormControls=[
   {
     label:"Company Name",
     name:"companyName",
-    placeholder:"Company Name",
+    placeholder:"Enter your Company Name",
     componentType:'input',
     disabled:true
   },
   {
     label:"Title",
     name:"title",
-    placeholder:"Job Title",
+    placeholder:"Enter your Job Title",
     componentType:'input'
   },
   {
     label:"Type",
     name:"type",
-    placeholder:"Job Type",
+    placeholder:"Enter your Job Type",
     componentType:'input'
   },
   {
     label:"Location",
     name:"location",
-    placeholder:"Job Location",
+    placeholder:"Enter your Job Location",
     componentType:'input'
   },
   {
     label:"Experience",
     name:"experience",
-    placeholder:"Experience",
+    placeholder:"Enter your Experience in years",
     componentType:'input'
   },
   {
     label:"Description",
     name:"description",
-    placeholder:"Description",
+    placeholder:"Enter your Description",
     componentType:'input'
   },
   {
     label:"Skills",
     name:"skills",
-    placeholder:"Skills",
+    placeholder:"Enter your Skills [Separated By Commas]",
     componentType:'input'
   },
 ]

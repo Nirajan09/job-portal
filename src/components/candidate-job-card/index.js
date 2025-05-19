@@ -84,7 +84,7 @@ const router = useRouter();
                 <div className='w-[150px] mt-6 flex justify-center items-center h-[40px] bg-black rounded-[4px]'>
                     <h2 className="text-xl font-bold text-white">{JobItem?.type}</h2>
                 </div>
-                <h3 className='text-2xl font-medium text-black mt-3'>Experience: {JobItem?.experience}Years</h3>
+                <h3 className='text-2xl font-medium text-black mt-3'>Experience: {JobItem?.experience} Years</h3>
                 <div className="flex gap-4 mt-6">
                     {
                         JobItem?.skills.split(",").map((skill)=>(

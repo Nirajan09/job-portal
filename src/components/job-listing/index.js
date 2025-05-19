@@ -23,8 +23,8 @@ const JobListing = ({
   fetchFilterCategories,
 }) => {
   const [filterParams, setFilterParams] = useState({});
-  const searchParams=useSearchParams()
-  const router=useRouter()
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const handleFilter = (getID, getOptions) => {
     let cpyfilters = { ...filterParams };
     const indexOfCurrentSection = Object.keys(cpyfilters).indexOf(getID);
@@ -42,20 +42,20 @@ const JobListing = ({
     sessionStorage.setItem("filterParams", JSON.stringify(cpyfilters));
   };
 
-  useEffect(()=>{
-    setFilterParams(JSON.parse(sessionStorage.getItem("filterParams")))
-  },[]);
+  useEffect(() => {
+    setFilterParams(JSON.parse(sessionStorage.getItem("filterParams")));
+  }, []);
 
-  useEffect(()=>{
-    if(filterParams && Object.keys(filterParams).length>0){
-      let url='';
-      url=formUrlQuery({
-        params:searchParams.toString(),
-        dataToAdd:filterParams,
-      })
-      router.push(url,{scroll:false})
+  useEffect(() => {
+    if (filterParams && Object.keys(filterParams).length > 0) {
+      let url = "";
+      url = formUrlQuery({
+        params: searchParams.toString(),
+        dataToAdd: filterParams,
+      });
+      router.push(url, { scroll: false });
     }
-  },[filterParams,searchParams])
+  }, [filterParams, searchParams]);
 
   const filterMenus = filterMenuData.map((item) => ({
     id: item.id,
@@ -74,12 +74,14 @@ const JobListing = ({
           {profileInfo?.role === "candidate" ? (
             <Menubar>
               {filterMenus.map((filterMenu) => (
-                <MenubarMenu>
-                  <MenubarTrigger className="cursor-pointer">{filterMenu.name}</MenubarTrigger>
+                <MenubarMenu key={filterMenu.id}>
+                  <MenubarTrigger className="cursor-pointer">
+                    {filterMenu.name}
+                  </MenubarTrigger>
                   <MenubarContent>
                     {filterMenu.options.map((option, optionIndex) => (
                       <MenubarItem
-                        key={optionIndex}
+                        key={`${filterMenu.id}-${option}`}
                         className="flex items-center"
                         onClick={() => handleFilter(filterMenu.id, option)}
                       >
@@ -103,7 +105,11 @@ const JobListing = ({
               ))}
             </Menubar>
           ) : (
-            <PostNewJob jobList={jobList} user={user} profileInfo={profileInfo} />
+            <PostNewJob
+              jobList={jobList}
+              user={user}
+              profileInfo={profileInfo}
+            />
           )}
         </div>
       </div>
@@ -116,13 +122,15 @@ const JobListing = ({
                   ? jobList.map((JobItem) =>
                       profileInfo?.role === "candidate" ? (
                         <CandidateJobCard
-                        user={user}
+                          key={JobItem.id}
+                          user={user}
                           JobItem={JobItem}
                           profileInfo={profileInfo}
                           getJobApplicationList={getJobApplicationList}
                         />
                       ) : (
                         <RecruiterJobCard
+                          key={JobItem.id}
                           JobItem={JobItem}
                           profileInfo={profileInfo}
                           getJobApplicationList={getJobApplicationList}

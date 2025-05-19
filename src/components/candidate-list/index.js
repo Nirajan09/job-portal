@@ -2,7 +2,7 @@
 
 import React, { Fragment } from "react";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogFooter } from "../ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
 import {
   getCandidateDetailsByIDAction,
   updateJobApplicationAction,
@@ -17,10 +17,10 @@ const CandidateList = ({
   setShowCurrentCandidateDetailsModel,
 }) => {
   const supabaseClient = createClient(
-    "https://akdqebxurkjfsvoahrao.supabase.co",
-    process.env.SUPABASE_URI
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   );
-
+  console.log(process.env.SUPABASE_URI);
   const handleFetchCandidateDetails = async (id) => {
     const data = await getCandidateDetailsByIDAction(id);
     if (data) {
@@ -64,6 +64,7 @@ const CandidateList = ({
                 <div className="px-4 my-6 flex justify-between items-center">
                   <h3 className="text-lg font-bold">{item?.name}</h3>
                   <Button
+                  key={item.id}
                     onClick={() =>
                       handleFetchCandidateDetails(item?.candidateUserID)
                     }
@@ -84,6 +85,9 @@ const CandidateList = ({
         }}
       >
         <DialogContent>
+          <DialogHeader>
+    <DialogTitle>Profile Details</DialogTitle>
+  </DialogHeader>
           <div>
             <h1 className="text-2xl font-bold text-black">
               {currentCandidateDetails?.candidateInfo?.name},
@@ -97,7 +101,7 @@ const CandidateList = ({
             </p>
             <p className="text-sm font-normal text-black">
               Total Experience:{" "}
-              {currentCandidateDetails?.candidateInfo?.totalExperience} years
+              {currentCandidateDetails?.candidateInfo?.totalExperience} Years
             </p>
             <p className="text-sm font-normal text-black">
               Salary: {currentCandidateDetails?.candidateInfo?.currentSalary}{" "}
@@ -111,7 +115,7 @@ const CandidateList = ({
               <h1>Previous Companies</h1>
               <div className="flex flex-wrap gap-4 mt-6 items-center">
                 {currentCandidateDetails?.candidateInfo?.previousCompanies
-                  .split(" ")
+                  .split(",")
                   .map((skill) => (
                     <div className="flex w-[100px]  justify-center items-center h-[35px] bg-black rounded-[4px]">
                       <h2 className="text-[13px] font-medium text-white">
@@ -148,7 +152,8 @@ const CandidateList = ({
                     (item) =>
                       item.candidateUserID === currentCandidateDetails?.userId
                   )
-                  ?.status.includes("Selected") || getJobApplicationList
+                  ?.status.includes("Selected") ||
+                getJobApplicationList
                   .find(
                     (item) =>
                       item.candidateUserID === currentCandidateDetails?.userId
@@ -176,7 +181,8 @@ const CandidateList = ({
                     (item) =>
                       item.candidateUserID === currentCandidateDetails?.userId
                   )
-                  ?.status.includes("Rejected") || getJobApplicationList
+                  ?.status.includes("Rejected") ||
+                getJobApplicationList
                   .find(
                     (item) =>
                       item.candidateUserID === currentCandidateDetails?.userId
