@@ -78,7 +78,7 @@ const router = useRouter();
             <DialogTitle>Post New Job</DialogTitle>
             <div className="grid gap-4 py-4">
               <CommonForm
-              setShowJobDialog={setShowJobDialog}
+                setShowJobDialog={setShowJobDialog}
                 ButtonText={"Add"}
                 formData={jobFormData}
                 setFormData={setjobFormData}

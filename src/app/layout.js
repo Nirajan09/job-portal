@@ -20,7 +20,7 @@ export const metadata = {
   title: "JobVista",
   description: "Find Your Dream Job with Ease!",
   icons:{
-    icon:"/JobPortal.png"
+    icon:"/JobPortalIcon.png"
   }
 };
 
