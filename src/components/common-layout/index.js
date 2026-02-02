@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { currentUser } from "@clerk/nextjs/server";
 import Header from "../header";
 import { fetchProfileAction } from "@/actions";
@@ -29,6 +31,5 @@ const CommonLayout = async ({ children }) => {
     </div>
   );
 };
-
 
 export default CommonLayout;
