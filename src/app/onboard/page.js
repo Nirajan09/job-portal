@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { fetchProfileAction } from '@/actions';
 import OnBoard from '@/components/on-board'
 import { currentUser } from '@clerk/nextjs/server'

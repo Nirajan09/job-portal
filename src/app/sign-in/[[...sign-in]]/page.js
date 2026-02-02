@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import {SignIn} from "@clerk/nextjs"
 import React from 'react'
 
