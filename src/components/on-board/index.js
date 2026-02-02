@@ -12,41 +12,49 @@ import { useUser } from "@clerk/nextjs";
 import { createClient } from "@supabase/supabase-js";
 import createProfileAction from "@/actions";
 import { useRouter } from "next/navigation";
-const supabaseClient= createClient("https://akdqebxurkjfsvoahrao.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFrZHFlYnh1cmtqZnN2b2FocmFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzU1NTIyMTAsImV4cCI6MjA1MTEyODIxMH0.4qqOSjCC-ARDt6JXMg06kmh6hyXWD8BlUvAsELZQ8u8")
+const supabaseClient = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
 
 const OnBoard = () => {
-  const router=useRouter()
+  const router = useRouter();
   const [currentTab, setCurrentTab] = useState("candidate");
   const [recruiterFormData, setRecruiterFormData] = useState(
-    intialRecruiterFormData
+    intialRecruiterFormData,
   );
   const [candidateFormData, setCandidateFormData] = useState(
-    initialCandidateFormData
+    initialCandidateFormData,
   );
-  const [file,setFile] = useState(null)
-  const handleFileChange=(event)=>{
-    event.preventDefault()
-    setFile(event.target.files[0])
-  }
+  const [file, setFile] = useState(null);
+  const handleFileChange = (event) => {
+    event.preventDefault();
+    setFile(event.target.files[0]);
+  };
 
-  const handleUploadPdfToSupabase=async()=>{
-    const {data,error}=await supabaseClient.storage.from("job-portal-public").upload(`/public/${file.name}`,file,{cacheControl:"3600",
-      upsert:false,
-    })
-    if(data){
-      setCandidateFormData({
-        ...candidateFormData,
-        resume:data.path
-      })
-    }
-  }
+  const handleUploadPdfToSupabase = async () => {
+  console.log("Uploading resume...");
 
-  useEffect(()=>{
-    if(file) handleUploadPdfToSupabase()
-  },[file])
+  const { data, error } = await supabaseClient.storage
+    .from("job-portal-public")
+    .upload(`/public/${file.name}`, file);
+
+  if (data) {
+    console.log("Upload success:", data.path);
+
+    setCandidateFormData((prev) => ({
+      ...prev,
+      resume: data.path,
+    }));
+  }
+};
+
+  useEffect(() => {
+    if (file) handleUploadPdfToSupabase();
+  }, [file]);
   const currentAuthUser = useUser();
   const { user } = currentAuthUser;
-  
+
   const validateRecruiter = () => {
     return (
       recruiterFormData.name.trim() !== "" &&
@@ -59,30 +67,38 @@ const OnBoard = () => {
     setCurrentTab(value);
   };
 
-  const validateCandidate=()=>{
-    return Object.keys(candidateFormData).every((key)=>candidateFormData[key].trim()!=='')
-  }
-  const RefreshPage=()=>{
+  const validateCandidate = () => {
+    return Object.values(candidateFormData).every((value) => {
+      if (typeof value === "string") {
+        return value.trim() !== "";
+      }
+      return value !== null && value !== undefined;
+    });
+  };
+  const RefreshPage = () => {
     router.refresh();
-  }
-  const createProfile=async()=>{
-    const data= currentTab==="candidate"?{
-      candidateInfo:candidateFormData,
-      role:"candidate",
-      isPremiumUser:false,
-      userId:user?.id,
-      email:user?.primaryEmailAddress?.emailAddress
-    }:{
-      recruiterInfo:recruiterFormData,
-      role:"recruiter",
-      isPremiumUser:false,
-      userId:user?.id,
-      email:user?.primaryEmailAddress?.emailAddress
-    }
+  };
+  const createProfile = async () => {
+    const data =
+      currentTab === "candidate"
+        ? {
+            candidateInfo: candidateFormData,
+            role: "candidate",
+            isPremiumUser: false,
+            userId: user?.id,
+            email: user?.primaryEmailAddress?.emailAddress,
+          }
+        : {
+            recruiterInfo: recruiterFormData,
+            role: "recruiter",
+            isPremiumUser: false,
+            userId: user?.id,
+            email: user?.primaryEmailAddress?.emailAddress,
+          };
 
-    await createProfileAction(data)
-    router.refresh()
-  }
+    await createProfileAction(data);
+    router.refresh();
+  };
   return (
     <div className=" p-6 lg:p-8">
       <Tabs value={currentTab} onValueChange={handleTabChange}>
@@ -98,7 +114,7 @@ const OnBoard = () => {
           </div>
           <TabsContent value="candidate">
             <CommonForm
-             action={createProfile}
+              action={createProfile}
               formControls={candidateOnBoardForm}
               ButtonText={"OnBoard as Candidate"}
               formData={candidateFormData}
