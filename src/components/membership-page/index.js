@@ -9,9 +9,7 @@ import { createPaymentStripe, createPriceIDAction, UpdateProfileAction } from "@
 import { loadStripe } from "@stripe/stripe-js";
 import { useSearchParams } from "next/navigation";
 
-const stripePromise = loadStripe(
-  "pk_test_51QwbKZDPS81sN13kmsBc1ygGJLxbc0pIFQisVouqRVbV5Y9ie4oMbQgoMDu0987UbNLhMToN9jmKD27iPYQhiYG400KzTiqRL7"
-);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 const MemberShipPage = ({ profileInfo }) => {
   const pathName = useSearchParams();
 

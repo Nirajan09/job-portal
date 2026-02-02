@@ -6,7 +6,7 @@ import Application from "@/models/application";
 import Job from "@/models/job";
 const { revalidatePath } = require("next/cache");
 
-const stripe =require('stripe')(process.env.STRIPE_URI)
+const stripe =require('stripe')(process.env.STRIPE_SECRET_KEY)
 // Create Profile Action
 const createProfileAction = async (formData) => {
   try {
