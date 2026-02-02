@@ -3,18 +3,24 @@ import Header from "../header";
 import { fetchProfileAction } from "@/actions";
 
 const CommonLayout = async ({ children }) => {
-  const User = await currentUser();
-  const profileInfo = await fetchProfileAction(User?.id);
+  let safeUser = null;
+  let profileInfo = null;
 
-  const safeUser = User
-    ? {
+  try {
+    const User = await currentUser();
+    profileInfo = await fetchProfileAction(User?.id);
+    if (User) {
+      safeUser = {
         id: User.id,
         firstName: User.firstName,
         lastName: User.lastName,
         email: User.emailAddresses?.[0]?.emailAddress,
         imageUrl: User.imageUrl,
-      }
-    : null;
+      };
+    }
+  } catch (err) {
+    console.error("Error in CommonLayout server render:", err);
+  }
 
   return (
     <div className="max-w-9xl max-h-screen">
@@ -23,5 +29,6 @@ const CommonLayout = async ({ children }) => {
     </div>
   );
 };
+
 
 export default CommonLayout;

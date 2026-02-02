@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "JobVista",
   description: "Find Your Dream Job with Ease!",
-  icons: { icon: "/JobPortalIcon.png" },
+  icons: { icon: "/favicon.ico" },
 };
 
 export default function RootLayout({ children }) {
