@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Job Portal 🚀
 
-## Getting Started
+A modern, responsive **Job Portal web application** built using **Next.js** and **Tailwind CSS**. This project focuses on clean UI/UX, scalability, and best practices in modern frontend development. It is suitable for showcasing as a professional portfolio project and can be easily extended with backend functionality.
 
-First, run the development server:
+🔗 **Live Demo:** https://job-portal-liard-one.vercel.app/  
+📦 **Repository:** https://github.com/Nirajan09/job-portal  
 
-```bash
+---
+
+## 📖 Overview
+
+The Job Portal application allows users to explore job opportunities through a clean and intuitive interface. The project demonstrates practical usage of Next.js features, component-based architecture, and utility-first styling with Tailwind CSS. It is currently frontend-focused and structured to support future backend and API integration.
+
+---
+
+## ✨ Features
+
+- 📱 Fully responsive design (mobile, tablet, desktop)  
+- ⚡ Fast performance using Next.js  
+- 🎨 Modern UI with Tailwind CSS  
+- 🧩 Reusable and scalable component structure  
+- 🚀 Ready for backend/API integration  
+- 🌐 Deployed on Vercel  
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js (React)  
+- **Styling:** Tailwind CSS  
+- **Language:** JavaScript  
+- **Linting:** ESLint  
+- **Deployment:** Vercel  
+
+---
+
+## 📂 Project Structure
+
+job-portal/  
+├── public/                 # Static assets  
+├── src/  
+│   ├── components/         # Reusable UI components  
+│   ├── pages/              # Next.js pages and routing  
+│   ├── styles/             # Global styles and Tailwind setup  
+│   └── utils/              # Utility/helper functions  
+├── .eslintrc.json           # ESLint configuration  
+├── next.config.mjs          # Next.js configuration  
+├── tailwind.config.mjs      # Tailwind CSS configuration  
+├── postcss.config.mjs       # PostCSS configuration  
+├── package.json             # Project dependencies and scripts  
+└── README.md                # Project documentation  
+
+---
+
+## ⚙️ Installation & Setup
+
+Follow the steps below to run the project locally.
+
+### 1. Clone the repository
+
+git clone https://github.com/Nirajan09/job-portal.git  
+cd job-portal
+
+### 2. Install dependencies
+
+npm install
+
+### 3. Start the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is optimized for deployment on **Vercel**.  
+Any push to the `main` branch will automatically trigger a new deployment if the repository is connected to Vercel.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔮 Future Enhancements
 
-## Deploy on Vercel
+- User authentication (Job Seeker & Recruiter roles)  
+- Backend integration with REST APIs  
+- Job posting and application system  
+- Search, filter, and pagination for job listings  
+- Database integration (MongoDB / PostgreSQL / MySQL)  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Contributing
+
+Contributions are welcome and appreciated.
+
+1. Fork the repository  
+2. Create a new branch (`feature/your-feature-name`)  
+3. Commit your changes  
+4. Push the branch  
+5. Open a Pull Request  
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.  
+You are free to use, modify, and distribute this project.
+
+---
+
+## 📬 Contact
+
+**Nirajan Tiwari**  
+GitHub: https://github.com/Nirajan09  
+
+If you found this project helpful or have suggestions, feel free to reach out or open an issue.
+
+⭐ If you like this project, consider giving it a star!
