@@ -187,8 +187,8 @@ export const createPaymentStripe=async(data)=>{
       payment_method_types:["card"],
       line_items:data?.lineItems,
       mode:'subscription',
-      success_url:"https://job-portal-sable-seven.vercel.app/membership"+"?status=success",
-      cancel_url:'https://job-portal-sable-seven.vercel.app/membership'+"?status=cancel",
+      success_url: `${process.env.FRONTEND_URL}/membership?status=success`,
+      cancel_url: `${process.env.FRONTEND_URL}/membership?status=cancel`,
     })
     return {
       success:true,
